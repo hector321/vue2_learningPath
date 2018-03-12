@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-text&v-html</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-text&v-html</h1>
+    <hr>
+    <div id="app">
+        <!-- 当我们网速很慢或者javascript出错时，会暴露我们的{{xxx}},v-text,就是解决这个问题的 -->
+        <span>{{ vText }}</span>=<span v-text="vText"></span>
+        <!-- 需要注意的是：在生产环境中动态渲染HTML是非常危险的，因为容易导致XSS攻击。所以只能在可信的内容上使用v-html，永远不要在用户提交和可操作的网页上使用。 -->
+        <span v-html="vHtml"></span>
+    </div>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    vText:"v-text",
+                    vHtml:"<p>v-html</p>"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

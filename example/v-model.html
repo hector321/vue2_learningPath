@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-model</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-model</h1>
+    <hr>
+    <div id="app">
+        <h3>修饰符</h3>
+        <p>{{message}}</p>
+        <p><input type="text" v-model.lazy="message">lazy-失去焦点后同步</p>
+        <p><input type="text" v-model.number="message">number-自动转为数字</p>
+        <p><input type="text" v-model.trim="message">trim-自动去首尾空格</p>
+        <hr>
+
+        <h3>文本域</h3>
+        <textarea cols="30" rows="10" v-model="message"></textarea>
+        <hr>
+        
+        <h3>复选框绑定单个值</h3>
+        <p><label><input type="checkbox" v-model="isTrue">复选框</label></p>
+        <p>{{isTrue}}</p>
+        <hr>
+
+        <h3>复选框绑定数组值</h3>
+        <p><label><input type="checkbox" v-model="check_names" value="aaa">复选框1</label></p>
+        <p><label><input type="checkbox" v-model="check_names" value="bbb">复选框2</label></p>
+        <p><label><input type="checkbox" v-model="check_names" value="ccc">复选框3</label></p>
+        <p>{{check_names}}</p>
+        <hr>
+
+        <h3>单选框绑定值</h3>
+        <p><label><input type="radio" v-model="radio_names" value="male">male</label></p>
+        <p><label><input type="radio" v-model="radio_names" value="female">female</label></p>
+        <p>{{radio_names}}</p>
+        <hr>
+        <br><br><br><br>
+    </div>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    message:"hello world",
+                    isTrue:"",
+                    check_names:[],
+                    radio_names:""
+                }
+            }
+        })
+    </script>
+</body>
+</html>

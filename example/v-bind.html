@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>v-bind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-bind</h1>
+    <hr>
+    <div id="app">
+        <p><img v-bind:src="imgSrc"  width="200px"></p>
+        <p><a :href="webUrl" target="_blank">新标签页打开</a></p>
+        <hr>
+        <div :class="className">class绑定(data中注册class的name)</div>
+        <div :class="{classB:isOK}">绑定class的判断(class+开关)</div>
+        <hr>
+        <div>
+            <label :class="{classA:isOK2}"><input type="checkbox" v-model="isOK2">勾选变色</label>
+        </div>
+        <hr>
+        <div :class="[class1,class2]">绑定多个class(需要data注册)</div>
+        <label><input type="checkbox" v-model="isOK3">勾选变色</label>
+        <div :class="[isOK3?class1:class2]">绑定多个class(需要data注册)</div>
+        <hr>
+        <div :style="{color:color,fontSize:fontSize}">绑定style(xxx-xxx需要变成xxxXxx)</div>
+        <div :style="{color:obejectStyle.color,fontSize:obejectStyle.fontSize}">绑定style(xxx-xxx需要变成xxxXxx)</div>
+
+    </div>
+    <style>
+        .classA{
+            color:red;
+        }
+        .classB{
+            font-size:200%;
+        }
+    </style>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    imgSrc:"https://ss2.bdstatic.com/lfoZeXSm1A5BphGlnYG/skin/117.jpg?2",
+                    webUrl:"https://www.baidu.com",
+                    className:"classA",
+                    class1:"classA",
+                    class2:"classB",
+                    isOK:true,
+                    isOK2:true,
+                    isOK3:true,
+                    color:"red",
+                    fontSize:"250%",
+                    obejectStyle:{
+                        color:"green",
+                        fontSize:"300%"
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
