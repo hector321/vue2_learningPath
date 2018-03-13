@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>实例入门-实例属性</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>实例入门-实例属性</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    message:"hello world"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

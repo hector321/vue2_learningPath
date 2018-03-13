@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Extends Option  扩展选项</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Extends Option  扩展选项 —— 执行顺序：原生method > 局部扩展的updated> 原生 updated</h1>
+    <hr>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p>${msg}</p>
+        <p><button @click="add">add</button></p>
+    </div>
+
+    <script>
+        // 执行顺序：原生method > 局部扩展的updated> 原生 updated
+        var extendsO={
+            updated:function(){
+                console.log("扩展的updated")
+            },
+            methods:{
+                // 如果方法名相同，扩展的原生方法不会执行
+                add:function(){
+                    this.msg-=-1;
+                    console.log('我是扩展的add方法');
+                }
+            }
+        }
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    msg:1
+                }
+            },
+            methods:{
+                add:function(){
+                    this.msg-=-1;
+                    console.log('我是原生add方法');
+                }
+            },
+            updated:function(){
+                console.log('我是原生updated方法');
+            },
+            // 扩展不能防数组，仅限于对象
+            extends:extendsO,
+            // 模版字符串格式修正,可以改为es6的风格
+            delimiters:['${','}']
+        })
+    </script>
+</body>
+</html>

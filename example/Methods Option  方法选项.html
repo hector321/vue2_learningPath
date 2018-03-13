@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Methods Option  方法选项</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Methods Option  方法选项 —— 与computed相同，此处的方法也不能使用箭头函数</h1>
+    <hr>
+    <div id="app">
+        <p>{{count}}</p>
+        <p><button @click="add(5)">add5</button></p>
+        <!-- .native - 监听组件根元素的原生事件。 -->
+        <p><btn @click.native="add(5,$event)"></btn></p>
+    </div>
+    <button onclick="app.add(5)">add5</button>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    message:"hello world",
+                    count:10
+                }
+            },
+            methods: {
+                // 与computed相同，此处的方法也不能使用箭头函数
+                add: function (num,e) {
+                    if (num) {
+                        this.count -= -num
+                    } else {
+                        this.count++;
+                    }
+                    if(e){console.log(e)}
+                }
+            },
+            components:{
+                "btn":{
+                    template:`<button>add5</button>`,
+                    data:function(){
+                        return{
+                            count:0
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mixins 混入选项操作</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Mixins 混入选项操作 —— 执行顺序：原生method > 全局混入updated > 局部混入updated> 原生 updated</h1>
+    <p>Mixins一般有两种用途：</p>
+    <p>1、在你已经写好了构造器后，需要增加方法或者临时的活动时使用的方法，这时用混入会减少源代码的污染。</p>
+    <p>2、很多地方都会用到的公用方法，用混入的方法可以减少代码量，实现代码重用。：</p>
+    <hr>
+    <div id="app">
+        <p>{{msg}}</p>
+        <p><button @click="add(3)">add</button></p>
+    </div>
+
+    <script>
+        // 混入都需要在vue实例化之前声明或执行
+        // 执行顺序：原生method > 全局混入updated > 局部混入updated> 原生 updated
+        var addC={
+            // 每次更新后XXX
+            updated:function(){
+                console.log("构造器混入updated")
+            }
+        };
+        Vue.mixin({//注意此处mixin传入对象用单数
+            updated:function(){
+                console.log("全局混入updated");
+            }
+        })
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    msg:1
+                }
+            },
+            methods:{
+                add:function(num){
+                    num?this.msg-=-num:this.msg-=-1;
+                    console.log("构造器原生add")
+                }
+            },
+            mixins:[
+                addC
+            ],
+            updated:function(){
+                console.log("构造器原生updated")
+            }
+        })
+        
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>propsData Option  全局扩展的数据传递</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>propsDataOption全局扩展的数据传递-可应用于Vuex，在spa中保持状态和数据</h1>
+    <hr>
+    <header></header>
+
+    <script>
+        var header_a=Vue.extend({
+            template:`<p>{{message}}-{{a}}</p>`,
+            data:function(){
+                return{
+                    message:"header标签"
+                }
+            },
+            props:["a"]
+        })
+        // 可应用于Vuex，在spa中保持状态和数据
+        new header_a({propsData:{a:1}}).$mount("header")
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>computed Option  计算选项</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>computed Option  计算选项 —— computed内的匿名函数不能使用箭头函数</h1>
+    <hr>
+    <div id="app">
+        <p>{{newPrice}}</p>
+        <ol>
+            <li v-for="news in resversedNews">标题：{{news.title}}；日期：{{news.date}}</li>
+        </ol>
+        <ol>
+            <li v-for="news in newsList">标题：{{news.title}}；日期：{{news.date}}</li>
+        </ol>
+    </div>
+
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:()=>{
+                return {
+                    price:100,
+                    newsList:[
+                        {
+                            title:'vue.directive自定义指令',date:'3/13-1'
+                        },
+                        {
+                            title:'Vue.extend构造器的延伸',date:'3/13-2'
+                        },
+                        {
+                            title:'Vue.set全局操作',date:'3/13-3'
+                        },
+                        {
+                            title:'Vue的生命周期（钩子函数）',date:'3/13-4'
+                        },
+                        {
+                            title:'Template 制作模版',date:'3/13-5'
+                        }
+                    ]
+                }
+            },
+            // 计算属性将被混入到 Vue 实例中。所有 getter 和 setter 的 this 上下文自动地绑定为 Vue 实例。
+            // 注意，不应该使用箭头函数来定义计算属性函数
+            // 理由是箭头函数绑定了父级作用域的上下文，所以 this 将不会按照期望指向 Vue 实例，this.a 将是 undefined
+            computed:{
+                newPrice:function(){
+                    // console.log(this);//指向vue实例
+                    return '(￥'+this.price+'元)'
+                },
+                // newPrice:()=>{
+                //     console.log(this);//指向windows
+                //     return this.price*2//报错
+                // }
+                resversedNews:function(){
+                    // console.log(this.newsList);
+                    return this.newsList.concat().reverse();//concat 深拷贝，避免污染数组的原排序
+                }
+            }
+        })
+    </script>
+</body>
+</html>
