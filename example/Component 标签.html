@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Component 标签</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 标签</h1>
+    <hr>
+    <div id="app">
+        <!-- is可以根据不同的值显示相应的组件 -->
+        <component v-bind:is="name"></component>
+
+        <label><input type="radio" value="ca" v-model="name">组件a</label>
+        <label><input type="radio" value="cb" v-model="name">组件b</label>
+        <label><input type="radio" value="cc" v-model="name">组件c</label>
+
+    </div>
+    
+    <script>
+        var componentA={
+            template:`<div>组件A-componentA</div>`
+        }
+        var componentB={
+            template:`<div>组件B-componentB</div>`
+        }
+        var componentC={
+            template:`<div>组件B-componentC</div>`
+        }
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "ca":componentA,
+                "cb":componentB,
+                "cc":componentC,
+            },
+            data:function(){
+                return{
+                    name:"ca"
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

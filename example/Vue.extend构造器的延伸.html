@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue.extend构造器的延伸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.extend构造器的延伸</h1>
+    <hr>
+    <div id="app">
+        <author></author>
+        <div id="author"></div>
+    </div>
+
+    <script>
+       var authorExtend=Vue.extend({
+           template:"<p><a :href='authorURL'>{{authorName}}</a></p>",
+           data:function(){
+               return{
+                   authorName:"hhh",
+                   authorURL:"http://www.baidu.com"
+               }
+           }
+       })
+    //    扩展器需要注册到dom对象上 $mount("xx")用法与querySelector相同
+        new authorExtend().$mount("author");
+        new authorExtend().$mount("#author");
+
+    </script>
+</body>
+</html>

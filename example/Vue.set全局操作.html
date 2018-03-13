@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vue.set全局操作</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Vue.set全局操作</h1>
+    <hr>
+    <div id="app">
+        <p>{{outData.goods}}:{{outData.count}}</p>
+        <p><button onclick="add()">add</button></p>
+        <ol>
+            <li v-for="item in outData.arr">{{item}}</li>
+        </ol>
+    </div>
+
+    <script>
+        var outData={
+            count:1,
+            goods:"aa",
+            arr:['aaa','bbb','ccc']
+        };
+        function add(){
+            // Vue.set(outData,"count",23);
+            // outData.count++;
+            // app.outData.count++;
+
+            // 通过js操作数组下标或者数组长度，vue无法监听到，因此产生了vue.set方法
+            app.outData.arr[1]="变！";
+            Vue.set(app.outData.arr,1,"变！");
+        }
+        var app=new Vue({
+           el:"#app",
+           data:function(){
+               return{
+                   outData
+               }
+           }
+        })
+    </script>
+</body>
+</html>

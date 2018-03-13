@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Component 组件props 属性设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 组件props 属性设置</h1>
+    <hr>
+    <div id="app">
+        <dd1 v-bind:location="location" :na-tion="nation"></dd1>
+    </div>
+    
+    <script>
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "dd1":{
+                    template:`<p>位置：{{naTion}}-{{location}}</p>`,
+                    props:[//注册选项，此处为数组,遇到短横用小驼峰写法
+                        "location","naTion"
+                    ]
+                }
+            },
+            data:function(){
+                return{
+                    location:"shanghai",
+                    nation:"china"
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

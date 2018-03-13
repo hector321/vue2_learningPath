@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Component 父子组件关系</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 父子组件关系</h1>
+    <hr>
+    <div id="app">
+        <dd1></dd1>
+        <dd2></dd2>
+        <dd3></dd3>
+        
+    </div>
+    
+    <script>
+        var dd1Component={//在构造器外部声明局部组件，并且注册到vue内
+            template:`<div>hello world111111111</div>`
+        }
+        var dd1Component2={
+            template:`<div>hello world22222222222</div>`
+        }
+        var app=new Vue({
+            el:'#app',
+            components:{//组件内可挂载多个子组件
+                "dd1":dd1Component,
+                "dd2":dd1Component2,
+                "dd3":{
+                    template:`<div>hello world3333333<dd31></dd31></div>`,//孙子模版必须被包含，例如<DIV>xxx<孙子></DIV>是正确的，<DIV>xxx</DIV><孙子>是错误的
+                    components:{
+                        "dd31":{
+                            template:`<div>孙子模版</div>`
+                        }
+                    }
+                }
+            },
+            data:function(){
+                return{
+                    
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

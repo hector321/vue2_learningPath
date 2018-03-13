@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Template 制作模版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Template 制作模版</h1>
+    <hr>
+    <div id="app">
+        <!-- 第一种写法-选项模版：会替代原来文本内容，即：{{msg}}会被替代成template1 -->
+        <p>{{msg}}</p>
+    </div>
+    <!-- 第二种写法-标签模版 -->
+    <template id="dd2">
+        <p>template2</p>
+    </template>    
+    <!-- 第三种写法-脚本模版:优势是可以通过src引用外部模版 -->
+    <script type="x-template" id="dd3">
+            <p>template3</p>
+    </script>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:function(){
+                return {
+                    msg:"hello world"
+                }
+            },
+            // 第一种写法-选项模版：会替代原来文本内容，即：{{msg}}会被替代成template1
+            // template:`
+            //     <p id="dd1">template1</p>
+            // `
+            
+            // 第二种写法-标签模版
+            // template:"#dd2"
+
+            // 第三种写法-脚本模版:优势是可以通过src引用外部模版
+            template:"#dd3"
+        });
+    </script>
+</body>
+</html>

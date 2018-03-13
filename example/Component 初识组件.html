@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Component 初识组件</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>Component 初识组件</h1>
+    <hr>
+    <div id="app">
+        <test></test>
+        <dd1 ></dd1>
+    </div>
+    <div id="app1">
+        <test></test>
+    </div>
+    
+    <script>
+        // 全局组件虽然是全局的，但是需要在vue环境下
+        Vue.component("test",{
+            template:`
+                <div >全局组件-全局组件虽然是全局的，但是需要在vue环境下</div>
+            `
+        })
+        var app=new Vue({
+            el:'#app',
+            components:{//注意此处是复数，可以有多个组件
+                "dd1":{//必须是字符串，其实是模版名
+                    template:`<p @click="console">局部组件</p>`,
+                    methods:{
+                        console:function(){
+                            console.log(1)
+                        }
+                    }
+                }
+            }
+        })
+        var app1=new Vue({
+            el:'#app1'
+        })
+    </script>
+</body>
+</html>
